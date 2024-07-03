@@ -1,10 +1,23 @@
 import Background from "@/components/layout/background";
 import TravelCard from "@/components/travelCard";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { tours } from "@/lib/constants";
+import { getData } from "@/lib/hooks";
 import React from "react";
 
-export default function PacotesPage() {
+type TPacote = {
+  id: string;
+  name: string;
+  description: string;
+  price: string;
+  duration_days: number;
+  destination: string;
+  features: string[];
+  availability: string;
+  image: string;
+};
+
+export default async function PacotesPage() {
+  const pacotes = await getData("http://localhost:8080/tours");
   return (
     <article>
       <div className="relative  w-full h-screen overflow-hidden">
@@ -15,13 +28,29 @@ export default function PacotesPage() {
               Conheça nossos Pacotes de Viagem
             </CardTitle>
           </CardHeader>
-          <CardContent className="flex flex-wrap items-center justify-center gap-4">
-            {tours.map((tour: any) => (
-              <TravelCard key={tour.id} tour={tour} />
-            ))}
+          <CardContent className="flex flex-wrap w-full h-full items-center justify-center gap-4">
+            {pacotes ? <TourPackages pacotes={pacotes} /> : <EmptyContainer />}
           </CardContent>
         </Card>
       </div>
     </article>
+  );
+}
+
+function EmptyContainer() {
+  return (
+    <div className=" self-center">
+      <h1 className="text-white/40">Nenhum Pacote Encontrado</h1>
+    </div>
+  );
+}
+
+function TourPackages({ pacotes }: { pacotes: TPacote[] }) {
+  return (
+    <>
+      {pacotes.map((tour: any) => (
+        <TravelCard key={tour.id} tour={tour} />
+      ))}
+    </>
   );
 }

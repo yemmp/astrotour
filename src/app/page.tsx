@@ -1,6 +1,5 @@
 import ContactForm from "@/components/contactForm";
 import Background from "@/components/layout/background";
-import Navbar from "@/components/layout/navbar";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -9,8 +8,14 @@ import {
   CardFooter,
   CardTitle,
 } from "@/components/ui/card";
-import { benefits } from "@/lib/constants";
+import { getData } from "@/lib/hooks";
 import Link from "next/link";
+
+type TBenefits = {
+  title: string;
+  description: string;
+};
+
 export default function Home() {
   return (
     <article className="flex flex-col w-full h-full no-scrollbar">
@@ -52,7 +57,9 @@ function CallToAction() {
   );
 }
 
-function Benefits() {
+async function Benefits() {
+  const benefits = await getData("http://localhost:8080/benefits");
+
   return (
     <Card className="my-10 mx-2  md:mx-16 p-10">
       <CardTitle className="text-center md:text-left">
@@ -60,7 +67,7 @@ function Benefits() {
       </CardTitle>
       <CardContent className="mt-4">
         <ul>
-          {benefits.map((benefit) => (
+          {benefits.map((benefit: TBenefits) => (
             <li className="list-disc py-2 text-justify" key={benefit.title}>
               <p className="font-medium">
                 {benefit.title}:{" "}
