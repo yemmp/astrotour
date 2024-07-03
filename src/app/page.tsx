@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { benefits } from "@/lib/constants";
+import Link from "next/link";
 export default function Home() {
   return (
     <article className="flex flex-col w-full h-full no-scrollbar">
@@ -43,7 +44,9 @@ function CallToAction() {
         incomparáveis.
       </CardContent>
       <CardFooter className="self-center md:self-end">
-        <Button className="uppercase font-bold">Garanta seu lugar!</Button>
+        <Button asChild className="uppercase font-bold">
+          <Link href="/pacotes">Garanta seu lugar!</Link>
+        </Button>
       </CardFooter>
     </Card>
   );
@@ -67,7 +70,9 @@ function Benefits() {
           ))}
         </ul>
         <div className="flex justify-center">
-          <Button className="">Saiba Mais</Button>
+          <Button asChild className="">
+            <Link href={"/informacoes"}>Saiba Mais</Link>
+          </Button>
         </div>
       </CardContent>
     </Card>
