@@ -1,4 +1,3 @@
-import Disclaimer from "@/components/disclaimer";
 import Background from "@/components/layout/background";
 import {
   Card,
@@ -14,11 +13,27 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { FAQs, partnerships, services } from "@/lib/constants";
+import Disclaimer from "@/components/disclaimer";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { getData } from "@/lib/hooks";
 
+type TService = {
+  title: string;
+  image: string;
+  description: string;
+  id: string;
+};
+type TFaq = {
+  question: string;
+  answer: string;
+};
+type TPartner = {
+  name: string;
+  link: string;
+  image: string;
+};
 export default function InfoPage() {
   return (
     <article>
@@ -94,12 +109,13 @@ function AboutUs() {
   );
 }
 
-function Services() {
+async function Services() {
+  const services = await getData("http://localhost:8080/services");
   return (
     <CardContent className="flex flex-col items-center justify-center gap-6">
       <CardTitle className="text-center">Nossos Serviços</CardTitle>
       <div className="flex flex-col md:flex-row gap-4">
-        {services.map((service) => (
+        {services.map((service: TService) => (
           <Card
             key={service?.title}
             className="md:w-[25%] md:h-[500px] m-0 p-0"
@@ -128,7 +144,8 @@ function Services() {
   );
 }
 
-function Security() {
+async function Security() {
+  const partnerships = await getData("http://localhost:8080/partnerships");
   return (
     <CardContent className="flex flex-col gap-6">
       <CardTitle className="text-center">Segurança e Proteção</CardTitle>
@@ -143,7 +160,7 @@ function Security() {
         mais avançados disponíveis.
       </p>
       <div className="flex flex-col md:flex-row gap-4">
-        {partnerships.map((partner) => (
+        {partnerships.map((partner: TPartner) => (
           <Card
             key={partner.name}
             className=" md:w-[25%] md:h-[250px]  m-0 p-0"
@@ -169,12 +186,14 @@ function Security() {
   );
 }
 
-function FAQ() {
+async function FAQ() {
+  const FAQs = await getData("http://localhost:8080/FAQs");
+
   return (
     <CardContent className="flex flex-col gap-6">
       <CardTitle className="text-center">Perguntas Frequentes</CardTitle>
       <ul className="list-disc">
-        {FAQs.map((faq) => (
+        {FAQs.map((faq: TFaq) => (
           <li className="p-4" key={faq.question}>
             <h2 className="font-bold">{faq.question}</h2>
             <p>{faq.answer}</p>
