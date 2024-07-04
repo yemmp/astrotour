@@ -3,6 +3,7 @@ import TravelCard from "@/components/travelCard";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getData } from "@/lib/hooks";
 import React from "react";
+import { tours } from "@/lib/constants";
 
 type TPacote = {
   id: string;
@@ -17,7 +18,8 @@ type TPacote = {
 };
 
 export default async function PacotesPage() {
-  const pacotes = await getData("http://localhost:8080/tours");
+  // const pacotes = await getData("http://localhost:8080/tours");
+  const pacotes = tours;
   return (
     <article>
       <div className="relative  w-full h-screen overflow-hidden">
@@ -45,7 +47,7 @@ function EmptyContainer() {
   );
 }
 
-function TourPackages({ pacotes }: { pacotes: TPacote[] }) {
+function TourPackages({ pacotes }: { pacotes: any }) {
   return (
     <>
       {pacotes.map((tour: any) => (

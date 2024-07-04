@@ -18,6 +18,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { getData } from "@/lib/hooks";
+import { FAQs, partnerships, services } from "@/lib/constants";
 
 type TService = {
   title: string;
@@ -110,12 +111,12 @@ function AboutUs() {
 }
 
 async function Services() {
-  const services = await getData("http://localhost:8080/services");
+  // const services = await getData("http://localhost:8080/services");
   return (
     <CardContent className="flex flex-col items-center justify-center gap-6">
       <CardTitle className="text-center">Nossos Serviços</CardTitle>
       <div className="flex flex-col md:flex-row gap-4">
-        {services.map((service: TService) => (
+        {services.map((service) => (
           <Card
             key={service?.title}
             className="md:w-[25%] md:h-[500px] m-0 p-0"
@@ -145,7 +146,7 @@ async function Services() {
 }
 
 async function Security() {
-  const partnerships = await getData("http://localhost:8080/partnerships");
+  // const partnerships = await getData("http://localhost:8080/partnerships");
   return (
     <CardContent className="flex flex-col gap-6">
       <CardTitle className="text-center">Segurança e Proteção</CardTitle>
@@ -187,7 +188,7 @@ async function Security() {
 }
 
 async function FAQ() {
-  const FAQs = await getData("http://localhost:8080/FAQs");
+  // const FAQs = await getData("http://localhost:8080/FAQs");
 
   return (
     <CardContent className="flex flex-col gap-6">
