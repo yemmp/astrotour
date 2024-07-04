@@ -3,6 +3,7 @@ import { Raleway } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/layout/navbar";
+import { Toaster } from "@/components/ui/toaster";
 
 const raleway = Raleway({ subsets: ["latin"] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
       >
         {children}
       </body>
+      <Toaster />
     </html>
   );
 }
