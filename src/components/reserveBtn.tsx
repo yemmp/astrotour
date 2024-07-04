@@ -27,7 +27,7 @@ export default function ReserveBtn() {
       <DialogTrigger asChild>
         <Button>Reserve Ja!</Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="mx-2 md:m-0">
         <DialogHeader>
           <DialogTitle className="text-center">
             Deseja reservar este pacote?
