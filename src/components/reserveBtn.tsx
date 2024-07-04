@@ -16,12 +16,7 @@ export default function ReserveBtn() {
   const [isOpen, setIsOpen] = useState(false);
   const inputClass = "bg-slate-700 focus:bg-slate-500 p-2";
 
-  const handleSubmit = () => {
-    toast({
-      title: "Pacote Reservado!",
-      description: `Sua viagem foi reservada com sucesso!\nEntraremos em contato em breve!`,
-    });
-  };
+  const handleSubmit = () => {};
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
@@ -40,6 +35,10 @@ export default function ReserveBtn() {
         <form
           onSubmit={(e) => {
             e.preventDefault();
+            toast({
+              title: "Pacote Reservado!",
+              description: `Sua viagem foi reservada com sucesso!\nEntraremos em contato em breve!`,
+            });
             setIsOpen(false);
           }}
           className="flex flex-col gap-4 text-white"
