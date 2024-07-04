@@ -9,6 +9,15 @@ import {
 import Image from "next/image";
 import React from "react";
 import { Button } from "./ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./ui/dialog";
+import { DialogDescription } from "@radix-ui/react-dialog";
+import ReserveBtn from "./reserveBtn";
 
 type TravelCardProps = {
   tour: {
@@ -61,7 +70,7 @@ export default function TravelCard({ tour }: TravelCardProps) {
           </p>
           <p className="bold">R${tour.price}</p>
         </div>
-        <Button>Reserve Ja!</Button>
+        <ReserveBtn />
       </CardFooter>
     </Card>
   );
