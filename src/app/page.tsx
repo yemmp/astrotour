@@ -8,6 +8,7 @@ import {
   CardFooter,
   CardTitle,
 } from "@/components/ui/card";
+import { benefits } from "@/lib/constants";
 import { getData } from "@/lib/hooks";
 import Link from "next/link";
 
@@ -58,7 +59,7 @@ function CallToAction() {
 }
 
 async function Benefits() {
-  const benefits = await getData("http://localhost:8080/benefits");
+  // const benefits = await getData("http://localhost:8080/benefits");
 
   return (
     <Card className="my-10 mx-2  md:mx-16 p-10">
