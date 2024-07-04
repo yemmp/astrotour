@@ -46,7 +46,7 @@ export default function InfoPage() {
         />
       </div>
       <div className="absolute left-[5%] top-[8%] md:top-[10%] w-[90%] ">
-        <Card className="flex ">
+        <Card className="flex mt-[58px] mb-[8px] md:mt-0 md:mb-0 ">
           <div className="relative hidden md:block rounded-tl-3xl rounded-bl-3xl  overflow-hidden w-[30%] h-full ">
             <Image
               src="/images/space-bus.jpg"

@@ -55,7 +55,7 @@ function BackgroundVideo({
 }) {
   return (
     <video className={cn(className)} autoPlay playsInline loop muted>
-      <source src={src} />
+      <source src={src} type="video/mp4" />
       Não foi possivel reproduzir o vídeo.
     </video>
   );
