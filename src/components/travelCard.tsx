@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Card,
   CardContent,
@@ -7,16 +9,7 @@ import {
   CardTitle,
 } from "./ui/card";
 import Image from "next/image";
-import React from "react";
-import { Button } from "./ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "./ui/dialog";
-import { DialogDescription } from "@radix-ui/react-dialog";
+import React, { useState } from "react";
 import ReserveBtn from "./reserveBtn";
 
 type TravelCardProps = {
@@ -33,9 +26,55 @@ type TravelCardProps = {
   };
 };
 export default function TravelCard({ tour }: TravelCardProps) {
+  const [isHovered, SetIsHovered] = useState(false);
+  const features = tour.features;
+
+  return (
+    <Card
+      onMouseEnter={() => SetIsHovered(true)}
+      onMouseLeave={() => SetIsHovered(false)}
+      className="relative flex overflow-hidden flex-col gap-2 w-[450px] md:h-[500px] bg-slate-700/55 shadow-slate-800 shadow-md hover:shadow-2xl hover:shadow-cyan-200  "
+    >
+      {isHovered ? <HoveredContent tour={tour} /> : <Content tour={tour} />}
+    </Card>
+  );
+}
+
+function Content({ tour }: TravelCardProps) {
   const features = tour.features;
   return (
-    <Card className="relative flex overflow-hidden flex-col gap-2 w-[450px] md:h-[500px]">
+    <>
+      <CardHeader className="overflow-hidden h-[250px] relative">
+        <div className="absolute inset-0">
+          <Image
+            src={tour.image}
+            alt="destination image"
+            fill
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </CardHeader>
+      <CardContent className="flex flex-col items-center gap-4">
+        <CardTitle>{tour.name}</CardTitle>
+        <ul className="list-disc">
+          <p className="bold text-center">Planejamento:</p>
+          {features &&
+            features.map((feature) => (
+              <li key={feature}>
+                <CardDescription>{feature}</CardDescription>
+              </li>
+            ))}
+        </ul>
+        <p>Duração: {tour.duration_days} dias</p>
+        <p className="bold">R${tour.price}</p>
+      </CardContent>
+    </>
+  );
+}
+
+function HoveredContent({ tour }: TravelCardProps) {
+  return (
+    <>
       {/* Imagem de fundo */}
       <div className="absolute inset-0 z-[-1]">
         <Image
@@ -51,16 +90,7 @@ export default function TravelCard({ tour }: TravelCardProps) {
       <CardContent className="relative flex flex-col p-4 flex-1 items-center gap-6">
         <CardTitle>{tour.name}</CardTitle>
         <CardDescription>{tour.description}</CardDescription>
-        <ul className="list-disc">
-          <p className="bold text-center">Planejamento:</p>
-          {features &&
-            features.map((feature) => (
-              <li key={feature}>
-                <CardDescription>{feature}</CardDescription>
-              </li>
-            ))}
-        </ul>
-        <p>Duração: {tour.duration_days} dias</p>
+
         <p>Disponibilidade: {tour.availability}</p>
       </CardContent>
       <CardFooter className="relative flex flex-col">
@@ -72,6 +102,6 @@ export default function TravelCard({ tour }: TravelCardProps) {
         </div>
         <ReserveBtn />
       </CardFooter>
-    </Card>
+    </>
   );
 }

@@ -1,4 +1,3 @@
-import ContactForm from "@/components/contactForm";
 import Background from "@/components/layout/background";
 import { Button } from "@/components/ui/button";
 import {
@@ -27,10 +26,6 @@ export default function Home() {
           type="video"
         />
         <CallToAction />
-      </div>
-      <div className="bg-gradient-to-t from-black to-slate-950">
-        <Benefits />
-        {/* <ContactForm /> */}
       </div>
     </article>
   );

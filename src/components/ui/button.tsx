@@ -10,7 +10,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-cyan-500 text-slate-50 hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90",
+          "border-cyan-500/80 border-2 bg-gradient-to-b from-cyan-500/80 to-cyan-500/40 text-slate-50 hover:bg-cyan-500/90 font-bold hover:border-cyan-500 hover:shadow-cyan-500 hover:shadow-lg",
         destructive:
           "bg-red-500 text-slate-50 hover:bg-red-500/90 dark:bg-red-900 dark:text-slate-50 dark:hover:bg-red-900/90",
         outline:
@@ -21,6 +21,7 @@ const buttonVariants = cva(
           "hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-800 dark:hover:text-slate-50",
         link: "text-slate-900 underline-offset-4 hover:underline dark:text-slate-50",
       },
+
       size: {
         default: "h-10 px-4 py-2",
         sm: "h-9 rounded-md px-3",

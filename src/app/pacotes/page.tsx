@@ -23,14 +23,18 @@ export default async function PacotesPage() {
   return (
     <article>
       <div className="relative  w-full h-screen overflow-hidden">
-        <Background src="/images/galaxy.jpg" alt="galaxy pic" type="image" />
-        <Card className="absolute top-[5%] left-[10%] w-[80%] h-[90%]  overflow-y-auto no-scrollbar ">
+        <Background
+          src="/videos/earth2.mp4"
+          alt="workstation video"
+          type="video"
+        />
+        <Card className="absolute top-[5%] left-[10%] w-[80%] h-full  overflow-y-auto no-scrollbar ">
           <CardHeader>
             <CardTitle className="text-center">
               Conheça nossos Pacotes de Viagem
             </CardTitle>
           </CardHeader>
-          <CardContent className="flex flex-wrap w-full h-full items-center justify-center gap-4">
+          <CardContent className="flex flex-wrap w-full mb-20 items-center justify-center gap-4">
             {pacotes ? <TourPackages pacotes={pacotes} /> : <EmptyContainer />}
           </CardContent>
         </Card>
